@@ -78,3 +78,21 @@ The better way is to use a variable:
     let
       pkgs = import <nixpkgs> {};
     in ...
+
+
+``<...>`` search path
+---------------------
+
+Usually ``<nixpkgs>``, ``<..>`` is syntax for importing Nix expressions specified by shell environment variable ``$NIX_PATH``.
+
+Two developers on different machines are likely to have `<nixpkgs>` point to different revisions,
+which will lead to getting different results.
+
+It's possible to specify exact nixpkgs commit via ``$NIX_PATH``, but that's still problematic unless:
+
+a) You specify the commit **at one place only** and reference it else where.
+
+b) You can control the environment via your souce code,
+   so that a) applies by somehow setting ``$NIX_PATH`` via nix-shell or NixOS options
+
+See :ref:`ref-pinning-nixpkgs` for a tutorial on how to do better.
